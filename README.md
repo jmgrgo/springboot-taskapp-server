@@ -57,6 +57,10 @@ This repository represents the **server** application of TaskApp.
 
 The client communicates with the server exclusively through defined API contracts.
 
+## Development Workflow
+
+This project follows the GitHub Flow branching strategy to ensure a stable main branch and a clean, pull-request-driven development process.
+
 ## Technology Stack
 
 - Java
