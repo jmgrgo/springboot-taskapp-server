@@ -1,6 +1,6 @@
-package org.jmgrgo.taskapp.domain.model.user;
+package org.jmgrgo.taskapp.domain.user.value;
 
-import org.jmgrgo.taskapp.domain.exception.InvalidEmailFormatException;
+import org.jmgrgo.taskapp.domain.user.exception.InvalidEmailFormatException;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
  */
 public record EmailAddress(String value) {
 
-    // Regex far basic email validation
+    // Regex for basic email validation
     private static final Pattern EMAIL_PATTERN =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,63}$", Pattern.CASE_INSENSITIVE);
 
     public EmailAddress {
 
@@ -30,17 +30,28 @@ public record EmailAddress(String value) {
     }
 
     /**
+     * Creates a new EmailAddress
+     * @param rawEmail raw email string
+     * @return the created EmailAddress value object
+     * @throws IllegalArgumentException if the string is not a valid Email Address format.
+     * @throws NullPointerException if the value is null.
+     */
+    public static EmailAddress fromString(String rawEmail) {
+        return new EmailAddress(rawEmail);
+    }
+
+    /**
      * Performs a null-safe check to determine if a string is a valid email.
-     * @param email The raw email string to check
+     * @param value The raw email string to check
      * @return true if the format is valid after normalization, false otherwise
      */
-    public static boolean isValid(String email) {
+    public static boolean isValid(String value) {
 
-        // If there's no email
-        if (email == null) return false;
+        // If the value
+        if (value == null) return false;
 
         // Check the normalized version
-        return isFormatValid(email.trim().toLowerCase());
+        return isFormatValid(value.trim().toLowerCase());
 
     }
 
