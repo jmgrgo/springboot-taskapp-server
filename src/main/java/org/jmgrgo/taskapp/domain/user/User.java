@@ -1,7 +1,8 @@
-package org.jmgrgo.taskapp.domain.model.user;
+package org.jmgrgo.taskapp.domain.user;
 
-import org.jmgrgo.taskapp.domain.exception.UserIsDeletedException;
-import org.jmgrgo.taskapp.domain.exception.UserIsLockedException;
+import org.jmgrgo.taskapp.domain.user.exception.UserIsDeletedException;
+import org.jmgrgo.taskapp.domain.user.exception.UserIsLockedException;
+import org.jmgrgo.taskapp.domain.user.value.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -9,6 +10,9 @@ import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents a User Account in the system.
+ */
 public class User {
 
     private final UserId id;
@@ -119,7 +123,7 @@ public class User {
         Objects.requireNonNull(email, "Email is required");
         Objects.requireNonNull(passwordHash, "Password is required");
 
-        // Set default "USER" as the default Role
+        // Set "USER" role if no roles are provided
         Set<UserRole> initialRoles = (roles == null || roles.isEmpty())
                 ? Set.of(UserRole.USER)
                 : roles;
