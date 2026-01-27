@@ -1,6 +1,6 @@
-package org.jmgrgo.taskapp.domain.model.user;
+package org.jmgrgo.taskapp.domain.user.value;
 
-import org.jmgrgo.taskapp.domain.exception.InvalidPasswordFormatException;
+import org.jmgrgo.taskapp.domain.user.exception.InvalidPasswordFormatException;
 
 import java.util.Objects;
 
@@ -23,7 +23,7 @@ public record PasswordHash(String value) {
     /**
      * Factory method to wrap a pre-computed hash.
      */
-    public static PasswordHash from(String hash) {
+    public static PasswordHash fromString(String hash) {
         return new PasswordHash(hash);
     }
 

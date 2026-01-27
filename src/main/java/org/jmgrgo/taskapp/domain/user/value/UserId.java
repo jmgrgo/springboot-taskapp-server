@@ -1,4 +1,4 @@
-package org.jmgrgo.taskapp.domain.model.user;
+package org.jmgrgo.taskapp.domain.user.value;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -26,6 +26,7 @@ public record UserId(UUID value) {
     /**
      * Creates a UserId from a raw UUID string.
      * @throws IllegalArgumentException if the string is not a valid UUID format.
+     * @throws NullPointerException if the value is null.
      */
     public static UserId fromString(String value) {
         return new UserId(UUID.fromString(value));
@@ -38,7 +39,7 @@ public record UserId(UUID value) {
      */
     public static boolean isValid(String value) {
 
-        // If there's no uuid value
+        // If the uuid is null
         if (value == null) return false;
 
         try {
