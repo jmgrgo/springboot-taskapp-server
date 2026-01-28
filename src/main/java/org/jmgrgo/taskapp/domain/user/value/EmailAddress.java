@@ -47,7 +47,7 @@ public record EmailAddress(String value) {
      */
     public static boolean isValid(String value) {
 
-        // If the value
+        // If the value is null
         if (value == null) return false;
 
         // Check the normalized version
